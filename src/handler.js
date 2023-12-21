@@ -168,7 +168,7 @@ const getAllBooksHandler = (request, h) => {
   return response;
 };
 
-const getBookByIdHandler = (request, h) => {
+const getBooksByIdHandler = (request, h) => {
   const {bookId} = request.params;
   const book = books.filter((book) => book.id === bookId)[0];
   if (book) {
@@ -187,7 +187,7 @@ const getBookByIdHandler = (request, h) => {
   return response;
 };
 
-const editBookByIdHandler = (request, h) => {
+const editBooksByIdHandler = (request, h) => {
   const {name, year, author, summary, publisher, pageCount, readPage, reading} =
     request.payload;
   const {bookId} = request.params;
@@ -256,7 +256,7 @@ const editBookByIdHandler = (request, h) => {
   return response;
 };
 
-const deleteBookByIdHandler = (request, h) => {
+const deleteBooksByIdHandler = (request, h) => {
   const {bookId} = request.params;
   const index = books.findIndex((book) => book.id === bookId);
 
@@ -279,7 +279,7 @@ const deleteBookByIdHandler = (request, h) => {
 module.exports = {
   addBooksHandler,
   getAllBooksHandler,
-  getBookByIdHandler,
-  editBookByIdHandler,
-  deleteBookByIdHandler,
+  getBooksByIdHandler,
+  editBooksByIdHandler,
+  deleteBooksByIdHandler,
 };
