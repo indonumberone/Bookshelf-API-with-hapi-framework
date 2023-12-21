@@ -81,12 +81,12 @@ const getAllBooksHandler = (request, h) => {
       status: 'success',
       data: {
         books: books
-          .filter((set) => set.name.toLowerCase().includes(newName))
-          .map((book) => ({
-            id: book.id,
-            name: book.name,
-            publisher: book.publisher,
-          })),
+            .filter((set) => set.name.toLowerCase().includes(newName))
+            .map((book) => ({
+              id: book.id,
+              name: book.name,
+              publisher: book.publisher,
+            })),
       },
     });
     response.code(200);
@@ -97,12 +97,12 @@ const getAllBooksHandler = (request, h) => {
       status: 'success',
       data: {
         books: books
-          .filter((set) => set.reading === false)
-          .map((book) => ({
-            id: book.id,
-            name: book.name,
-            publisher: book.publisher,
-          })),
+            .filter((set) => set.reading === false)
+            .map((book) => ({
+              id: book.id,
+              name: book.name,
+              publisher: book.publisher,
+            })),
       },
     });
     response.code(200);
@@ -112,12 +112,12 @@ const getAllBooksHandler = (request, h) => {
       status: 'success',
       data: {
         books: books
-          .filter((set) => set.reading === true)
-          .map((book) => ({
-            id: book.id,
-            name: book.name,
-            publisher: book.publisher,
-          })),
+            .filter((set) => set.reading === true)
+            .map((book) => ({
+              id: book.id,
+              name: book.name,
+              publisher: book.publisher,
+            })),
       },
     });
     response.code(200);
@@ -128,12 +128,12 @@ const getAllBooksHandler = (request, h) => {
       status: 'success',
       data: {
         books: books
-          .filter((finished) => finished.finished === false)
-          .map((book) => ({
-            id: book.id,
-            name: book.name,
-            publisher: book.publisher,
-          })),
+            .filter((finished) => finished.finished === false)
+            .map((book) => ({
+              id: book.id,
+              name: book.name,
+              publisher: book.publisher,
+            })),
       },
     });
     response.code(200);
@@ -143,12 +143,12 @@ const getAllBooksHandler = (request, h) => {
       status: 'success',
       data: {
         books: books
-          .filter((finished) => finished.finished === true)
-          .map((book) => ({
-            id: book.id,
-            name: book.name,
-            publisher: book.publisher,
-          })),
+            .filter((finished) => finished.finished === true)
+            .map((book) => ({
+              id: book.id,
+              name: book.name,
+              publisher: book.publisher,
+            })),
       },
     });
     response.code(200);
