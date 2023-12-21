@@ -91,7 +91,7 @@ const getAllBooksHandler = (request, h) => {
     response.code(200);
     return response;
   }
-  if (reading == 0) {
+  if (reading == 1) {
     const response = h.response({
       status: 'success',
       data: {
@@ -106,12 +106,43 @@ const getAllBooksHandler = (request, h) => {
     });
     response.code(200);
     return response;
-  } else if (reading == 1) {
+  } else if (reading == 0) {
     const response = h.response({
       status: 'success',
       data: {
         books: books
           .filter((reading) => reading.reading === false)
+          .map((book) => ({
+            id: book.id,
+            name: book.name,
+            publisher: book.publisher,
+          })),
+      },
+    });
+    response.code(200);
+    return response;
+  }
+  if (finished == 1) {
+    const response = h.response({
+      status: 'success',
+      data: {
+        books: books
+          .filter((finished) => finished.finished === true)
+          .map((book) => ({
+            id: book.id,
+            name: book.name,
+            publisher: book.publisher,
+          })),
+      },
+    });
+    response.code(200);
+    return response;
+  } else if (finished == 0) {
+    const response = h.response({
+      status: 'success',
+      data: {
+        books: books
+          .filter((finished) => finished.finished === false)
           .map((book) => ({
             id: book.id,
             name: book.name,
@@ -177,7 +208,7 @@ const editBookByIdHandler = (request, h) => {
       const response = h.response({
         status: 'fail',
         message:
-          'Gagal menambahkan buku. readPage tidak boleh lebih besar dari pageCount',
+          'Gagal memperbarui buku. readPage tidak boleh lebih besar dari pageCount',
       });
       response.code(400);
       return response;
