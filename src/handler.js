@@ -25,14 +25,14 @@ const addBooksHandler = (request, h) => {
     return response;
   }
 
-  const isFinished = (pageCount, readPage) => {
+  const isBookFinished = (pageCount, readPage) => {
     if (pageCount === readPage) {
       return true;
     } else {
       return false;
     }
   };
-  const finished = isFinished(pageCount, readPage);
+  const finished = isBookFinished(pageCount, readPage);
 
   const newBook = {
     id,
@@ -131,14 +131,14 @@ const editBookByIdHandler = (request, h) => {
       return response;
     }
 
-    const isFinished = (pageCount, readPage) => {
+    const isBookFinished = (pageCount, readPage) => {
       if (pageCount === readPage) {
         return true;
       } else {
         return false;
       }
     };
-    const finished = isFinished(pageCount, readPage);
+    const finished = isBookFinished(pageCount, readPage);
 
     books[index] = {
       ...books[index],
@@ -176,7 +176,7 @@ const deleteBookByIdHandler = (request, h) => {
   const {bookId} = request.params;
   const index = books.findIndex((book) => book.id === bookId);
 
-  if (bookId !== -1) {
+  if (index !== -1) {
     books.splice(index, 1);
     const response = h.response({
       status: 'success',
