@@ -1,5 +1,5 @@
 const {nanoid} = require('nanoid');
-const books = require('./books');
+const books = require('./books').default;
 
 const addBooksHandler = (request, h) => {
   const {name, year, author, summary, publisher, pageCount, readPage, reading} =
@@ -81,12 +81,12 @@ const getAllBooksHandler = (request, h) => {
       status: 'success',
       data: {
         books: books
-            .filter((set) => set.name.toLowerCase().includes(newName))
-            .map((book) => ({
-              id: book.id,
-              name: book.name,
-              publisher: book.publisher,
-            })),
+          .filter((set) => set.name.toLowerCase().includes(newName))
+          .map((book) => ({
+            id: book.id,
+            name: book.name,
+            publisher: book.publisher,
+          })),
       },
     });
     response.code(200);
@@ -97,12 +97,12 @@ const getAllBooksHandler = (request, h) => {
       status: 'success',
       data: {
         books: books
-            .filter((set) => set.reading === false)
-            .map((book) => ({
-              id: book.id,
-              name: book.name,
-              publisher: book.publisher,
-            })),
+          .filter((set) => set.reading === false)
+          .map((book) => ({
+            id: book.id,
+            name: book.name,
+            publisher: book.publisher,
+          })),
       },
     });
     response.code(200);
@@ -112,12 +112,12 @@ const getAllBooksHandler = (request, h) => {
       status: 'success',
       data: {
         books: books
-            .filter((set) => set.reading === true)
-            .map((book) => ({
-              id: book.id,
-              name: book.name,
-              publisher: book.publisher,
-            })),
+          .filter((set) => set.reading === true)
+          .map((book) => ({
+            id: book.id,
+            name: book.name,
+            publisher: book.publisher,
+          })),
       },
     });
     response.code(200);
@@ -128,12 +128,12 @@ const getAllBooksHandler = (request, h) => {
       status: 'success',
       data: {
         books: books
-            .filter((finished) => finished.finished === false)
-            .map((book) => ({
-              id: book.id,
-              name: book.name,
-              publisher: book.publisher,
-            })),
+          .filter((finished) => finished.finished === false)
+          .map((book) => ({
+            id: book.id,
+            name: book.name,
+            publisher: book.publisher,
+          })),
       },
     });
     response.code(200);
@@ -143,12 +143,12 @@ const getAllBooksHandler = (request, h) => {
       status: 'success',
       data: {
         books: books
-            .filter((finished) => finished.finished === true)
-            .map((book) => ({
-              id: book.id,
-              name: book.name,
-              publisher: book.publisher,
-            })),
+          .filter((finished) => finished.finished === true)
+          .map((book) => ({
+            id: book.id,
+            name: book.name,
+            publisher: book.publisher,
+          })),
       },
     });
     response.code(200);
@@ -168,7 +168,7 @@ const getAllBooksHandler = (request, h) => {
   return response;
 };
 
-const getBookByIdHandler = (request, h) => {
+const getBooksByIdHandler = (request, h) => {
   const {bookId} = request.params;
   const book = books.filter((book) => book.id === bookId)[0];
   if (book) {
@@ -187,7 +187,7 @@ const getBookByIdHandler = (request, h) => {
   return response;
 };
 
-const editBookByIdHandler = (request, h) => {
+const editBooksByIdHandler = (request, h) => {
   const {name, year, author, summary, publisher, pageCount, readPage, reading} =
     request.payload;
   const {bookId} = request.params;
@@ -256,7 +256,7 @@ const editBookByIdHandler = (request, h) => {
   return response;
 };
 
-const deleteBookByIdHandler = (request, h) => {
+const deleteBooksByIdHandler = (request, h) => {
   const {bookId} = request.params;
   const index = books.findIndex((book) => book.id === bookId);
 
@@ -279,7 +279,7 @@ const deleteBookByIdHandler = (request, h) => {
 module.exports = {
   addBooksHandler,
   getAllBooksHandler,
-  getBookByIdHandler,
-  editBookByIdHandler,
-  deleteBookByIdHandler,
+  getBooksByIdHandler,
+  editBooksByIdHandler,
+  deleteBooksByIdHandler,
 };
